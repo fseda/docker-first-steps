@@ -1,7 +1,7 @@
 # Specify a base image
 FROM node:19.6-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
 # Copy build files
 COPY package*.json ./
