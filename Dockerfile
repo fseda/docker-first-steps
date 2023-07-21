@@ -4,7 +4,7 @@ FROM node:19.6-alpine
 WORKDIR /usr/src/app
 
 # Copy build files
-COPY ./ /usr/app
+COPY package*.json ./
 
 # Install some dependencies
 RUN npm install
