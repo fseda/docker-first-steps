@@ -1,16 +1,24 @@
 # Specify a base image
 FROM node:19.6-alpine
 
+# Set NODE_ENV
+ENV NODE_ENV production
+
+# Specify a working directory
 WORKDIR /usr/app
 
 # Copy files required to install dependencies
 COPY package*.json ./
 
-# Install some dependencies
-RUN npm install
+# Only install production dependencies
+RUN npm ci --only=production
 
+# Use non-root user
+USER node
+
+# Use --chown on COPY to set file permissions
 # Copy remaining source code after installing dependencies.
-COPY ./app/ .
+COPY --chown=node:node ./app/ .
 
 # Default command
 CMD ["npm", "start"]
