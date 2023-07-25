@@ -20,5 +20,8 @@ USER node
 # Copy remaining source code after installing dependencies.
 COPY --chown=node:node ./app/ .
 
+# Indicate port to be used
+EXPOSE 8080
+
 # Default command
 CMD ["npm", "start"]

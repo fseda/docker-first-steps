@@ -34,6 +34,10 @@ DOCKERFILE
 
     Copy the remaining files from the source code to the WORKDIR. The flag --chown sets file permissions
 
+  > `EXPOSE 8080`
+
+    Indicate expect port
+
 
   > `CMD ["node", "start"]`
 
