@@ -1,7 +1,7 @@
 # Specify a base image
 FROM node:19.6-alpine
 
-# Set NODE_ENV
+# Set NODE_EV
 ENV NODE_ENV production
 
 # Specify a working directory
@@ -11,7 +11,10 @@ WORKDIR /usr/app
 COPY package*.json ./
 
 # Only install production dependencies
-RUN npm ci --only=production
+# Use cache mount to speed up install of existing dependencies
+RUN --mount=type=cache,target=/usr/app/.npm \
+  npm set cache /usr/app/.npm && \
+  npm ci --only=production
 
 # Use non-root user
 USER node

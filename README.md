@@ -22,9 +22,11 @@ DOCKERFILE
 
     Copy files necessary for dependency installation (package.json and package-lock.json). We do this for better layer caching.
 
-  > `RUN npm ci --only=production`
+  > `RUN --mount=type=cache,target=/usr/app/.npm \
+    npm set cache /usr/app/.npm && \
+    npm ci --only=production`
 
-    Install only the dependencies needed for production
+    Install only the dependencies needed for production. Use cache mount feature to speed up the installation by using a local cache
 
   > `USER node`
 
