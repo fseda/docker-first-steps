@@ -4,6 +4,7 @@
     "redis": "2.8.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node app/index.js",
+    "start:dev": "nodemon app/index.js"
   }
 }

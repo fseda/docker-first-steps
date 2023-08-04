@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/usr/app/.npm \
 
 COPY . .
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start:dev"]
 
 FROM base as production
 
@@ -33,10 +33,10 @@ USER node
 
 # Use --chown on COPY to set file permissions
 # Copy remaining source code after installing dependencies.
-COPY --chown=node:node ./app/ .
+COPY --chown=node:node ./app/ ./app
 
 # Indicate port to be used
 EXPOSE 8080
 
 # Default command
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
